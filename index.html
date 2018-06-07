@@ -17,14 +17,14 @@
               <h2>Sign in</h2>
               <form action="#">
           
-                <div class="input-group input-group-lg">
-                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                  <input type="text" class="form-control" placeholder="name" name="name">
+                <div>
+                  <span></i></span>
+                  <input type="text"placeholder="name" name="name" v-model=input.name>
                     </div>
           
-                  <div class="input-group input-group-lg">
-                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                    <input type="text" class="form-control" placeholder="email" name="email">
+                  <div>
+                    <span></span>
+                    <input type="text" placeholder="email" name="email" v-model=input.email>
                   </div>
           
                   <button v-on:click="submitLogin()">Login</button>
@@ -36,18 +36,23 @@
           const app = new Vue({
               el: "#app",
               data: {
-                  file: ''
+                  input: {
+                      name:"arief",
+                      email: "awfawf"
+                  }
               },
               methods: {
                   submitLogin(){
+                      console.log('submit')
+                    //   console.log(input.name)
                       let user = {
-                          name: name,
-                          email: email,
+                          name: this.input.name,
+                          email: this.input.email,
                       }
                       axios.post('http://35.197.135.159/request-token',
                         user)
                         .then(user=>{
-                            console.log(user)
+                            console.log(user.data)
                         })
                   }
               }
